@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irmak Öznergiz | Kişisel Web Sayfası</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --primary-color: #4285F4;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --gradient-start: #231219;
+            --gradient-end: #121927;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(to right, #2, #3, #12, #19, #27) 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(90deg, #4285F4, #bf91f3, #38bdae);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .typewriter {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin: 20px 0;
+            min-height: 30px;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        .btn-linkedin { background-color: #0077B5; }
+        .btn-github { background-color: #181717; }
+        .btn-email { background-color: #D14836; }
+
+        /* Sections */
+        section {
+            margin: 60px 0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Focus Areas Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .tech-stack img {
+            border-radius: 4px;
+            height: 28px;
+        }
+
+        /* GitHub Stats */
+        .stats-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .stats-container img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Irmak Öznergiz</h1>
+            <div class="typewriter" id="typewriter"></div>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/oznergiz-irmak/" target="_blank" class="btn-linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/irmakoznrgz" target="_blank" class="btn-github">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="mailto:oznergizirmak@gmail.com" class="btn-email">
+                    <i class="fas fa-envelope"></i> İletişim
+                </a>
+            </div>
+            <br>
+            <img src="https://komarev.com/ghpvc/?username=irmakoznrgz&style=flat-square&color=4285F4&label=Ziyaretçi+Sayısı" alt="Profile Views" />
+        </header>
+
+        <!-- About -->
+        <section id="about">
+            <h2><i class="fas fa-user-astronaut"></i> Hakkımda</h2>
+            <p>Merhaba! Ben <strong>Irmak Öznergiz</strong>. Ankara Üniversitesi İstatistik Bölümü 2. sınıf öğrencisiyim. Veriyle uğraşmayı sevdiğim kadar, elde ettiğim sonuçları ve geliştirdiğim yapıları kullanıcı dostu arayüzlerle sunmayı da seviyorum. Kendimi veri bilimi ve web geliştirme alanlarında geliştiriyor; <strong>Python, SQL</strong> ve <strong>Frontend</strong> teknolojileri kullanarak çeşitli projeler üretiyorum.</p>
+        </section>
+
+        <!-- Focus Areas -->
+        <section id="focus">
+            <h2><i class="fas fa-bullseye"></i> Odaklandığım Alanlar</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-chart-bar text-blue"></i> Veri & İstatistik</h3>
+                    <ul>
+                        <li><strong>Veri Analizi:</strong> Python (Pandas, NumPy) ile veri işleme ve anlamlandırma.</li>
+                        <li><strong>Veritabanı Yönetimi:</strong> SQL kullanarak veritabanı sorgulama ve yönetimi.</li>
+                        <li><strong>Akademik:</strong> Ankara Üniversitesi'nde istatistiksel modelleme ve olasılık teorileri.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-laptop-code"></i> Geliştirme</h3>
+                    <ul>
+                        <li><strong>Frontend Projeleri:</strong> Kullanıcı dostu, modern ve duyarlı web arayüzleri geliştirme.</li>
+                        <li><strong>Programlama Dilleri:</strong> Python ve JavaScript ekosistemlerinde uygulamalar oluşturma.</li>
+                        <li><strong>Sürekli Öğrenme:</strong> Her gün yeni bir teknoloji veya framework keşfetme heyecanı.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section id="skills">
+            <h2><i class="fas fa-microchip"></i> Teknoloji Yığınım</h2>
+            <div class="tech-stack">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL">
+                <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+                <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
+                <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+                <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
+            </div>
+        </section>
+
+        <!-- GitHub Stats -->
+        <section id="stats">
+            <h2><i class="fas fa-chart-pie"></i> GitHub İstatistiklerim</h2>
+            <div class="stats-container">
+                <div class="stats-row">
+                    <img src="https://github-readme-stats.vercel.app/api?username=irmakoznrgz&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&bg_color=0d1117" alt="GitHub Stats" />
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=irmakoznrgz&theme=tokyonight&hide_border=true&background=0d1117" alt="GitHub Streak" />
+                </div>
+                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=irmakoznrgz&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&langs_count=8" alt="Top Languages" />
+                <img src="https://github-readme-activity-graph.vercel.app/graph?username=irmakoznrgz&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=70a5fd&line=bf91f3&point=38bdae" alt="Activity Graph" />
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Irmak Öznergiz. Tüm hakları saklıdır.</p>
+            <p>HTML, CSS ve JavaScript ile kodlanmıştır.</p>
+        </footer>
+    </div>
+
+    <!-- Typing Effect Script -->
+    <script>
+        const texts = [
+            "Statistics Student @ Ankara University",
+            "Python, SQL & Frontend Developer",
+            "Veri Bilimi ve Web Geliştirme Tutkunu"
+        ];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+        let isDeleting = false;
+
+        function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+
+            if (isDeleting) {
+                letter = currentText.slice(0, --index);
+            } else {
+                letter = currentText.slice(0, ++index);
+            }
+
+            document.getElementById('typewriter').textContent = letter + "|";
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && letter.length === currentText.length) {
+                typeSpeed = 2000; // Bekleme süresi
+                isDeleting = true;
+            } else if (isDeleting && letter.length === 0) {
+                isDeleting = false;
+                count++;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Başlat
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(type, 1000);
+        });
+    </script>
+</body>
+</html>
