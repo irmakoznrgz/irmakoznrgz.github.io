@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irmak Öznergiz | Portfolio</title>
-    <!-- Tailwind CSS (Latest) -->
+    <title>Irmak Öznergiz | Developer</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            light: '#a78bfa',
-                            DEFAULT: '#8b5cf6',
-                            dark: '#6d28d9',
-                        }
+                        dark: '#050505',
+                        card: '#111111',
+                        accent: '#ff2a2a',
+                        textMain: '#eeeeee',
+                        textMuted: '#888888'
                     }
                 }
             }
@@ -31,130 +29,171 @@
     </script>
     <style>
         body {
-            background-color: #0f172a; /* Slate 900 */
-            color: #f8fafc; /* Slate 50 */
-            background-image: radial-gradient(circle at top right, #1e1b4b, transparent 40%),
-                              radial-gradient(circle at bottom left, #0f172a, transparent 40%);
-            background-attachment: fixed;
+            background-color: #050505;
+            color: #eeeeee;
+            overflow-x: hidden;
         }
+
+        /* Background Animation Setup */
+        .bg-animation-container {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .blob:nth-child(1) { width: 400px; height: 400px; background: #ffffff; top: -10%; left: -10%; animation-delay: 0s; }
+        .blob:nth-child(2) { width: 500px; height: 500px; background: #ff2a2a; bottom: -20%; right: -10%; animation-delay: -5s; }
+        .blob:nth-child(3) { width: 300px; height: 300px; background: #ffffff; top: 40%; left: 50%; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+            100% { transform: translate(-30px, 50px) scale(0.9); }
+        }
+
+        /* Glass & Neon Effects */
         .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(17, 17, 17, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
         }
-        .skill-badge {
-            background: rgba(139, 92, 246, 0.1);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            transition: all 0.3s ease;
+        
+        .glass-card:hover {
+            border-color: rgba(255, 42, 42, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(255, 42, 42, 0.1);
+            transform: translateY(-5px);
         }
-        .skill-badge:hover {
-            background: rgba(139, 92, 246, 0.2);
-            transform: translateY(-2px);
+
+        .circle-profile {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* The Neon Glow Interaction */
+        .circle-profile:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 40px rgba(255, 42, 42, 0.5), inset 0 0 20px rgba(255, 42, 42, 0.2);
+            border-color: #ff2a2a;
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col selection:bg-brand selection:text-white">
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Animated Background -->
+    <div class="bg-animation-container">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="w-full glass-card sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="text-xl font-bold tracking-tight">Irmak<span class="text-brand">.</span></span>
-            <div class="space-x-4">
-                <a href="https://github.com/irmakoznrgz" target="_blank" class="text-gray-300 hover:text-brand transition-colors"><i class="fab fa-github text-xl"></i></a>
-                <a href="https://www.linkedin.com/in/oznergiz-irmak/" target="_blank" class="text-gray-300 hover:text-brand transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
-                <a href="mailto:oznergizirmak@gmail.com" class="text-gray-300 hover:text-brand transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+    <nav class="w-full glass-card sticky top-0 z-50 border-b-0">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <span class="text-xl font-bold tracking-widest uppercase">Irmak<span class="text-accent">.</span></span>
+            <div class="space-x-6">
+                <a href="https://github.com/irmakoznrgz" target="_blank" class="text-textMuted hover:text-accent transition-colors"><i class="fab fa-github text-xl"></i></a>
+                <a href="https://www.linkedin.com/in/oznergiz-irmak/" target="_blank" class="text-textMuted hover:text-accent transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="mailto:oznergizirmak@gmail.com" class="text-textMuted hover:text-accent transition-colors"><i class="fas fa-envelope text-xl"></i></a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
+    <main class="flex-grow max-w-6xl mx-auto px-6 py-16 w-full">
         
         <!-- Hero Section -->
-        <section class="py-16 md:py-24 text-center md:text-left flex flex-col md:flex-row items-center gap-10">
-            <div class="flex-1">
-                <p class="text-brand font-medium mb-2 tracking-wide uppercase text-sm">Hello, World!</p>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                    I'm <span class="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">Irmak Öznergiz</span>
-                </h1>
-                <p class="text-xl text-gray-400 mb-8 max-w-2xl leading-relaxed">
-                    A 2nd-year Statistics student at Ankara University. I specialize in turning complex data into clean, functional backend systems and user-friendly interfaces.
+        <section class="py-20 flex flex-col items-center justify-center text-center">
+            <!-- Circular Profile Box -->
+            <div class="circle-profile w-72 h-72 rounded-full border border-gray-800 bg-card/40 backdrop-blur-md flex flex-col items-center justify-center cursor-pointer mb-10">
+                <h1 class="text-3xl font-bold text-textMain transition-colors duration-300">Irmak Öznergiz</h1>
+                <div class="h-px w-12 bg-accent my-3"></div>
+                <p class="text-textMuted text-sm tracking-widest uppercase text-center px-4">
+                    Statistics<br>Backend Developer
                 </p>
-                <a href="mailto:oznergizirmak@gmail.com" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105">
-                    Let's Connect <i class="fas fa-arrow-right"></i>
-                </a>
             </div>
+            
+            <p class="text-lg text-textMuted max-w-2xl leading-relaxed">
+                I am a 2nd-year Statistics student at Ankara University. I focus on merging data analysis with robust backend architectures to build seamless, intelligent applications.
+            </p>
         </section>
 
         <!-- Skills Section -->
-        <section class="py-12 border-t border-gray-800">
-            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-3">
-                <i class="fas fa-code text-brand"></i> Tech Stack & Skills
+        <section class="py-16">
+            <h2 class="text-xl font-semibold mb-8 uppercase tracking-widest text-textMain border-l-2 border-accent pl-4">
+                Technical Expertise
             </h2>
-            <div class="flex flex-wrap gap-3">
-                <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium"><i class="fab fa-python mr-2"></i>Python</span>
-                <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium"><i class="fas fa-database mr-2"></i>PostgreSQL</span>
-                <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium"><i class="fas fa-bolt mr-2"></i>FastAPI</span>
-                <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium"><i class="fas fa-spider mr-2"></i>Web Scraping</span>
-                <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium"><i class="fas fa-server mr-2"></i>REST APIs</span>
-                <span class="skill-badge px-4 py-2 rounded-full text-sm font-medium"><i class="fab fa-html5 mr-2"></i>HTML & CSS</span>
+            <div class="flex flex-wrap gap-4">
+                <span class="glass-card px-5 py-3 rounded-md text-sm font-medium tracking-wide"><i class="fab fa-python mr-2 text-accent"></i> Python</span>
+                <span class="glass-card px-5 py-3 rounded-md text-sm font-medium tracking-wide"><i class="fas fa-database mr-2 text-accent"></i> PostgreSQL</span>
+                <span class="glass-card px-5 py-3 rounded-md text-sm font-medium tracking-wide"><i class="fas fa-server mr-2 text-accent"></i> FastAPI</span>
+                <span class="glass-card px-5 py-3 rounded-md text-sm font-medium tracking-wide"><i class="fas fa-spider mr-2 text-accent"></i> Web Scraping</span>
+                <span class="glass-card px-5 py-3 rounded-md text-sm font-medium tracking-wide"><i class="fab fa-html5 mr-2 text-accent"></i> HTML & CSS</span>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section class="py-12 border-t border-gray-800">
-            <h2 class="text-2xl font-semibold mb-8 flex items-center gap-3">
-                <i class="fas fa-laptop-code text-brand"></i> Featured Projects
+        <section class="py-16">
+            <h2 class="text-xl font-semibold mb-8 uppercase tracking-widest text-textMain border-l-2 border-accent pl-4">
+                Selected Works
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
                 <!-- Project 1 -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
-                    <div class="bg-gray-800/50 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fab fa-spotify text-2xl text-green-400"></i>
+                <div class="glass-card rounded-xl p-8 flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fab fa-spotify text-3xl text-textMain"></i>
+                        <a href="https://github.com/irmakoznrgz/spotify-analytics-backend" target="_blank" class="text-textMuted hover:text-accent transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Spotify Analytics</h3>
-                    <p class="text-gray-400 text-sm mb-6 flex-grow">
-                        A robust backend architecture designed for fetching and analyzing Spotify data efficiently using APIs.
+                    <h3 class="text-xl font-bold mb-3 tracking-wide">Spotify Analytics</h3>
+                    <p class="text-textMuted text-sm mb-6 flex-grow leading-relaxed">
+                        Backend architecture dedicated to fetching, parsing, and analyzing Spotify data efficiently.
                     </p>
-                    <a href="https://github.com/irmakoznrgz/spotify-analytics-backend" target="_blank" class="text-brand hover:text-brand-light font-medium text-sm inline-flex items-center gap-1">
-                        View Repository <i class="fas fa-external-link-alt text-xs"></i>
-                    </a>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
-                    <div class="bg-gray-800/50 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-film text-2xl text-red-400"></i>
+                <div class="glass-card rounded-xl p-8 flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-film text-3xl text-textMain"></i>
+                        <div class="space-x-3">
+                            <a href="https://github.com/irmakoznrgz/Movies-TV-Recommendation-System" target="_blank" class="text-textMuted hover:text-accent transition-colors" title="Engine">
+                                <i class="fas fa-cogs"></i>
+                            </a>
+                            <a href="https://github.com/irmakoznrgz/CineMatch-v2" target="_blank" class="text-textMuted hover:text-accent transition-colors" title="Interface">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">CineMatch Engine</h3>
-                    <p class="text-gray-400 text-sm mb-6 flex-grow">
-                        A comprehensive recommendation system for Movies and TV Shows. Analyzes data to provide precise user suggestions.
+                    <h3 class="text-xl font-bold mb-3 tracking-wide">CineMatch System</h3>
+                    <p class="text-textMuted text-sm mb-6 flex-grow leading-relaxed">
+                        A robust recommendation engine for Movies and TV Shows, powered by user preference data.
                     </p>
-                    <div class="flex flex-col gap-2">
-                        <a href="https://github.com/irmakoznrgz/Movies-TV-Recommendation-System" target="_blank" class="text-brand hover:text-brand-light font-medium text-sm inline-flex items-center gap-1">
-                            Engine Repo <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <a href="https://github.com/irmakoznrgz/CineMatch-v2" target="_blank" class="text-brand hover:text-brand-light font-medium text-sm inline-flex items-center gap-1">
-                            CineMatch v2 <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="glass-card rounded-2xl p-6 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
-                    <div class="bg-gray-800/50 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-cloud-sun text-2xl text-blue-400"></i>
+                <div class="glass-card rounded-xl p-8 flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-cloud text-3xl text-textMain"></i>
+                        <a href="https://github.com/irmakoznrgz/weather-dashboard" target="_blank" class="text-textMuted hover:text-accent transition-colors">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Weather Dashboard</h3>
-                    <p class="text-gray-400 text-sm mb-6 flex-grow">
-                        A dynamic, frontend-driven dashboard that visualizes real-time weather data pulled from external APIs.
+                    <h3 class="text-xl font-bold mb-3 tracking-wide">Weather Dashboard</h3>
+                    <p class="text-textMuted text-sm mb-6 flex-grow leading-relaxed">
+                        Real-time visualization dashboard consuming external weather APIs to map current conditions.
                     </p>
-                    <a href="https://github.com/irmakoznrgz/weather-dashboard" target="_blank" class="text-brand hover:text-brand-light font-medium text-sm inline-flex items-center gap-1">
-                        View Repository <i class="fas fa-external-link-alt text-xs"></i>
-                    </a>
                 </div>
 
             </div>
@@ -163,13 +202,13 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t border-gray-800 mt-auto">
-        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-gray-500 text-sm">
-                &copy; 2024 Irmak Öznergiz. All rights reserved.
+    <footer class="w-full border-t border-gray-900 mt-auto glass-card">
+        <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-textMuted text-xs tracking-widest uppercase">
+                &copy; 2024 Irmak Öznergiz
             </p>
-            <p class="text-gray-500 text-sm flex items-center gap-1">
-                Designed with <i class="fas fa-heart text-brand mx-1"></i> in Ankara
+            <p class="text-textMuted text-xs tracking-widest uppercase">
+                Ankara, TR
             </p>
         </div>
     </footer>
