@@ -1,385 +1,398 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irmak Öznergiz | Bento Portfolyo</title>
-    <!-- Modern ve Teknolojik Fontlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syne:wght@600;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg: #050505;
-            --card-bg: #111111;
-            --card-border: #222222;
-            --card-hover: #2a2a2a;
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --accent-1: #c084fc; /* Mor */
-            --accent-2: #2dd4bf; /* Turkuaz */
-            --accent-3: #f472b6; /* Pembe */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/72387477?v=4">
+  <title>Tobias Wilhelm</title>
+  <style>
+.markdown-container img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.markdown-container h2 {
+  font-weight: bold;
+}
 
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            /* Geliştirici/Veri stili noktalı arka plan */
-            background-image: radial-gradient(#333 1px, transparent 1px);
-            background-size: 30px 30px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
+.markdown-container ul {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+}
 
-        h1, h2, h3 {
-            font-family: 'Syne', sans-serif;
-        }
-
-        /* Bento Grid Sistemi */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(180px, auto);
-            gap: 20px;
-            max-width: 1100px;
-            width: 100%;
-        }
-
-        /* Kartların Ortak Özellikleri */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 32px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: border-color 0.3s;
-            /* 3D efekti için */
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .card:hover {
-            border-color: var(--card-hover);
-        }
-
-        /* Kart Boyutlandırmaları (Masaüstü) */
-        .span-2-col { grid-column: span 2; }
-        .span-3-col { grid-column: span 3; }
-        .span-4-col { grid-column: span 4; }
-        .span-2-row { grid-row: span 2; }
-
-        /* 1. Profil Kartı */
-        .profile-card {
-            background: linear-gradient(145deg, #111, #1a1a2e);
-            justify-content: center;
-        }
-        
-        .profile-card h1 {
-            font-size: 3.5rem;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-        
-        .profile-card h1 span {
-            background: linear-gradient(to right, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .profile-card p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(192, 132, 252, 0.1);
-            color: var(--accent-1);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            border: 1px solid rgba(192, 132, 252, 0.3);
-        }
-
-        /* 2. Sosyal Medya Kartları */
-        .social-card {
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            font-size: 3rem;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .social-card.linkedin:hover { background: #0077b5; border-color: #0077b5; transform: scale(0.98); }
-        .social-card.github:hover { background: #ffffff; color: #000; border-color: #fff; transform: scale(0.98); }
-        .social-card.email:hover { background: #ea4335; border-color: #ea4335; transform: scale(0.98); }
-
-        .social-card span {
-            font-size: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* 3. Yetenekler (Kayan Yazı - Marquee) Kartı */
-        .skills-card {
-            justify-content: center;
-            background: #0f172a;
-        }
-
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-        }
-
-        /* Kenarlara solma efekti */
-        .marquee-container::before, .marquee-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 50px;
-            height: 100%;
-            z-index: 2;
-        }
-        .marquee-container::before { left: 0; background: linear-gradient(to right, #0f172a, transparent); }
-        .marquee-container::after { right: 0; background: linear-gradient(to left, #0f172a, transparent); }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 15s linear infinite;
-        }
-
-        .skill-item {
-            display: inline-block;
-            font-size: 2rem;
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            margin: 0 20px;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--text-muted);
-            transition: 0.3s;
-        }
-
-        .skill-item:hover {
-            color: var(--accent-2);
-            -webkit-text-stroke: 0;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* 4. Eğitim & Odak Kartı */
-        .focus-card {
-            justify-content: space-between;
-        }
-
-        .focus-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--accent-3);
-        }
-
-        .focus-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--card-border);
-        }
-        .focus-item:last-child { border: none; margin: 0; padding: 0; }
-        
-        .focus-icon {
-            width: 45px; height: 45px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 1.2rem;
-        }
-
-        /* 5. İstatistik Kartları */
-        .stat-card {
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: transparent;
-            border: none;
-        }
-
-        .stat-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 32px;
-            border: 1px solid var(--card-border);
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .span-4-col { grid-column: span 2; }
-            .profile-card h1 { font-size: 2.5rem; }
-        }
-
-        @media (max-width: 600px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-            .span-2-col, .span-3-col, .span-4-col { grid-column: span 1; }
-            .span-2-row { grid-row: span 1; }
-        }
-    </style>
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+  </style>
 </head>
-<body>
-
-    <main class="bento-grid">
-        
-        <!-- Ana Profil Kartı -->
-        <div class="card span-2-col span-2-row profile-card 3d-card">
-            <span class="badge">Veri & Web Geliştirici</span>
-            <h1>Merhaba, <br>Ben <span>Irmak.</span></h1>
-            <p>Ankara Üniversitesi İstatistik 2. Sınıf Öğrencisiyim. Verinin anlattığı hikayeleri çözmeyi ve bu hikayeleri modern, kullanıcı dostu web arayüzleriyle insanlara sunmayı seviyorum.</p>
-        </div>
-
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/oznergiz-irmak/" target="_blank" class="card social-card linkedin 3d-card">
-            <i class="fab fa-linkedin"></i>
-            <span>Bağlantı Kur</span>
-        </a>
-
-        <!-- GitHub -->
-        <a href="https://github.com/irmakoznrgz" target="_blank" class="card social-card github 3d-card">
-            <i class="fab fa-github"></i>
-            <span>Projelerim</span>
-        </a>
-
-        <!-- Eğitim ve Odak Alanları -->
-        <div class="card span-2-col span-2-row focus-card 3d-card">
-            <h2>Ne Üzerine Çalışıyorum?</h2>
-            <div>
-                <div class="focus-item">
-                    <div class="focus-icon" style="color: var(--accent-2);"><i class="fas fa-chart-pie"></i></div>
-                    <div>
-                        <strong style="display:block; font-size:1.1rem;">Veri Analizi & İstatistik</strong>
-                        <span style="color: var(--text-muted); font-size: 0.9rem;">Python, Pandas, SQL</span>
-                    </div>
-                </div>
-                <div class="focus-item">
-                    <div class="focus-icon" style="color: var(--accent-1);"><i class="fas fa-laptop-code"></i></div>
-                    <div>
-                        <strong style="display:block; font-size:1.1rem;">Frontend Geliştirme</strong>
-                        <span style="color: var(--text-muted); font-size: 0.9rem;">Modern Web Arayüzleri</span>
-                    </div>
-                </div>
-                <div class="focus-item">
-                    <div class="focus-icon" style="color: var(--accent-3);"><i class="fas fa-university"></i></div>
-                    <div>
-                        <strong style="display:block; font-size:1.1rem;">Akademik Altyapı</strong>
-                        <span style="color: var(--text-muted); font-size: 0.9rem;">Olasılık, Veri Madenciliği</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Email -->
-        <a href="mailto:oznergizirmak@gmail.com" class="card social-card email 3d-card">
-            <i class="fas fa-paper-plane"></i>
-            <span>E-posta Gönder</span>
-        </a>
-
-        <!-- Teknoloji Marquee Kartı -->
-        <div class="card span-3-col skills-card 3d-card">
-            <div class="marquee-container">
-                <div class="marquee-content">
-                    <span class="skill-item">PYTHON</span>
-                    <span class="skill-item">SQL</span>
-                    <span class="skill-item">JAVASCRIPT</span>
-                    <span class="skill-item">HTML5</span>
-                    <span class="skill-item">CSS3</span>
-                    <span class="skill-item">PANDAS</span>
-                    <span class="skill-item">GIT</span>
-                    <!-- Kusursuz döngü için kopyası -->
-                    <span class="skill-item">PYTHON</span>
-                    <span class="skill-item">SQL</span>
-                    <span class="skill-item">JAVASCRIPT</span>
-                    <span class="skill-item">HTML5</span>
-                    <span class="skill-item">CSS3</span>
-                    <span class="skill-item">PANDAS</span>
-                    <span class="skill-item">GIT</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- GitHub Aktivite Grafiği -->
-        <div class="card span-4-col stat-card 3d-card" style="height: 200px;">
-            <img src="https://github-readme-activity-graph.vercel.app/graph?username=irmakoznrgz&theme=react-dark&hide_border=true&bg_color=111111&color=2dd4bf&line=c084fc&point=f472b6" alt="Activity Graph" />
-        </div>
-
-        <!-- GitHub Diller ve İstatistikler -->
-        <div class="card span-2-col stat-card 3d-card">
-            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=irmakoznrgz&layout=compact&theme=react-dark&hide_border=true&bg_color=111111&title_color=ffffff&text_color=888888" alt="Top Languages" />
-        </div>
-
-        <div class="card span-2-col stat-card 3d-card">
-            <img src="https://github-readme-stats.vercel.app/api?username=irmakoznrgz&show_icons=true&theme=react-dark&hide_border=true&bg_color=111111&title_color=ffffff&icon_color=c084fc&text_color=888888" alt="GitHub Stats" />
-        </div>
-
-    </main>
-
-    <!-- 3D Eğilme (Tilt) Efekti Scripti -->
+<body class="bg-white relative">
+<style>
+/* Add necessary dark mode styles for the footer */
+.dark-mode .bg-white.p-4.rounded.shadow-md.transition-colors.duration-200.hover\:bg-gray-100:hover {
+  background-color: #333333;
+}
+.dark-mode {
+  background-color: #1a1a1a;
+}
+.dark-mode footer,
+.dark-mode footer .text-gray-600 {
+  color: #f8f8f8;
+}
+    .dark-mode .text-white,
+    .dark-mode .text-black,
+    .dark-mode .text-gray-900,
+    .dark-mode h1,
+    .dark-mode h2,
+    .dark-mode h3,
+    .dark-mode h4,
+    .dark-mode .bg-white .card-content,
+    .dark-mode .bg-white div {
+      color: #f8f8f8;
+    }
+    .dark-mode .bg-white {
+      background-color: #1a1a1a;
+    }
+    .dark-mode .shadow-md {
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(255, 255, 255, 0.06);
+    }
+  </style>
+  <div id="particles-js"></div>
+<nav class="p-4 flex flex-wrap items-center justify-between w-full px-2 md:px-4">
+    <div>
+      <span class="text-black font-bold">wilhelm.digital</span><span class="text-black"></span>
+    </div>
+    <button id="dark-mode-toggle" class="ml-4 p-2  text-black rounded shadow-md">🌓</button>
+  </nav>
+  <div class="flex flex-col items-center justify-center min-h-screen">
+    <div id="header-container" class="px-4 py-5 mt-8 space-x-4">
+      <h1 class="text-8xl font-bold mb-10">Tobias Wilhelm</h1>
+      <h2 class="text-xl mb-3">Empathic Team Manager by Day, Innovating with AI and NoCode at Night
+        <br><b>Merging Productivity and Creativity</b></h2>
+      <br>
+      <div class="flex space-x-4">
+        <a href="https://www.linkedin.com/in/tobiaswilhelm" target="_blank" class="text-xl text-black hover:text-pink-600 transition-colors duration-200 ease-in-out"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/tobias_digital" target="_blank" class="text-xl text-black hover:text-pink-600 transition-colors duration-200 ease-in-out"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.reddit.com/user/tobias_digital" target="_blank" class="text-xl text-black hover:text-pink-600 transition-colors duration-200 ease-in-out"><i class="fab fa-reddit"></i></a>
+        <a href="https://github.com/tobwil" target="_blank" class="text-xl text-black hover:text-pink-600 transition-colors duration-200 ease-in-out"><i class="fab fa-github"></i></a>
+        <a href="mailto:tobias@wilhelm.digital" target="_blank" class="text-xl text-black hover:text-pink-600 transition-colors duration-200 ease-in-out"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+  <div id="content-container" class="flex flex-col md:flex-row w-full flex-wrap mt-6 mb-20 mx-1 md:mx-0">
+    <div id="posts-container" class="w-full md:w-1/3 px-4 py-5 mb-5 md:mb-0">
+      <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-magnifying-glass"></i> Digital Endeavors</h3>
+      <h4 class="text-sm italic mb-4">A collection of thoughts and findings</h4>
+      <div id="posts-list" class="space-y-4">
+        <!-- Fetched Posts Markdown files will be displayed here -->
+      </div>
+    </div>
+    <div id="projects-container" class="w-full md:w-2/3 px-4 py-5 mb-5 md:mb-0">
+      <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-code"></i> Projects</h3>
+      <h4 class="text-sm italic mb-4">Discover what I do in my spare time</h4>
+      <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-wrap">
+        <!-- Fetched Projects Markdown files will be displayed here -->
+      </div>
+    </div>
+  </div>
     <script>
-        const cards = document.querySelectorAll('.3d-card');
+      document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+  
+        const toggleBtn = document.getElementById("dark-mode-toggle");
+        const isDarkModeOn = document.body.classList.contains("dark-mode");
+  
+        toggleBtn.innerText = isDarkModeOn ? "☀️" : "🌓";
+      });
+    </script>
+    <div id="listening-container" class="w-full px-4 py-5">
+      <h3 class="text-2xl font-semibold mb-4"><i class="fab fa-spotify"></i> What's on my Playlist</h3>
+      <div id="listening-list" class="flex flex-wrap mx-auto md:-mx-2 md:space-x-4">
+        <!-- Fetched Listening Markdown files will be displayed here -->
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+  <script>
+      const postsList = document.getElementById('posts-list');
+    const projectsList = document.getElementById('projects-list');
+    const converter = new showdown.Converter({
+      simpleLineBreaks: true,
+      strikethrough: true,
+      tables: true,
+    });
+    const baseUrl = "https://api.github.com/repos/tobwil/markdown_website/contents/";
+    const folders = ['posts', 'projects', 'listening'];
 
-        cards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -5; // Eğilme şiddeti
-                const rotateY = ((x - centerX) / centerX) * 5;
+    async function fetchMarkdownFiles(folder) {
+      const response = await fetch(`${baseUrl}${folder}`);
+      const files = await response.json();
+      function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+      }
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
+      const randomFiles = shuffleArray(files);
+      const maxVisibleItems = folder === 'posts' ? 3 : folder === 'projects' ? 5 : Infinity;
+      let itemCount = 0;
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-                card.style.transition = 'transform 0.5s ease';
-            });
+      for (const file of randomFiles) {
+        if (file.name.endsWith('.md')) {
+          const fileRes = await fetch(file.download_url);
+          const mdContent = await fileRes.text();
+          const mdWithLineBreaks = mdContent.replace(/\n/g, '  \n');
+          const htmlContent = converter.makeHtml(mdWithLineBreaks);
 
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'none'; // Fare üzerindeyken anında tepki
-            });
+          const title = mdContent.split('\n')[0].replace(/^#+\s*/, '');
+          const contentWithoutTitle = mdContent.replace(/^.+\n/, '');
+          const htmlContentWithoutTitle = converter.makeHtml(contentWithoutTitle);
+          const fileCard = `
+              <div class="markdown-container bg-white p-4 rounded shadow-md transition-colors duration-200 hover:bg-gray-100 w-200 h-200 overflow-auto flex-none mx-2 my-2">
+                <h2 class="text-xl font-semibold mb-2">${title}</h2>
+                <div>${htmlContentWithoutTitle}</div>
+              </div>
+          `;
+
+          if (itemCount < maxVisibleItems) {
+            if (folder === 'posts') {
+              postsList.innerHTML += fileCard;
+            } else if (folder === 'projects') {
+              projectsList.innerHTML += fileCard;
+            } else if (folder === 'listening') {
+              document.getElementById('listening-list').innerHTML += fileCard;
+            }
+          } else {
+            if (folder !== 'listening') {
+              const hiddenCard = `<div class='hidden'>${fileCard}</div>`;
+              if (folder === 'posts') {
+                postsList.innerHTML += hiddenCard;
+              } else if (folder === 'projects') {
+                projectsList.innerHTML += hiddenCard;
+              }
+            }
+          }
+          itemCount++;
+        }
+      }
+
+    if (folder !== 'listening' && itemCount > maxVisibleItems) {
+      const container = folder === 'posts' ? postsList : projectsList;
+      createShowMoreButton(container);
+    }
+  }
+
+        const createShowMoreButton = (container) => {
+        const button = document.createElement('button');
+        button.innerHTML = '➕ Show More';
+        button.classList.add('show-more');
+        button.style.color = 'gray'; // Set the text color to gray
+        button.style.marginTop = '10px'; // Add some margin on top
+        container.after(button);
+
+        button.addEventListener('click', () => {
+            const hiddenItems = container.querySelectorAll('.hidden');
+            hiddenItems.forEach(item => item.classList.remove('hidden'));
+            button.remove();
         });
+    };
+
+    folders.forEach(folder => {
+        fetchMarkdownFiles(folder);
+    });
+  </script>
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: '#888888'
+        },
+        shape: {
+          type: 'circle',
+          stroke: {
+            width: 0,
+            color: '#000000'
+          },
+          polygon: {
+            nb_sides: 5
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 40,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#888888',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 6,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: {
+            enable: true,
+            mode: 'repulse'
+          },
+          onclick: {
+            enable: false
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 400,
+            line_linked: {
+              opacity: 1
+            }
+          },
+          bubble: {
+            distance: 400,
+            size: 40,
+            duration: 2,
+            opacity: 8,
+            speed: 3
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 4
+          },
+          remove: {
+            particles_nb: 2
+          }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+  <script src="https://unpkg.com/elevator.js"></script>
+  <script>
+    const elevator = new Elevator({
+      mainAudio: "https://raw.githubusercontent.com/tholman/elevator.js/master/demo/music/elevator.mp3",
+      endAudio: "https://raw.githubusercontent.com/tholman/elevator.js/master/demo/music/ding.mp3",
+      duration: 5000,
+    });
+
+const footer = document.createElement("footer");
+footer.className = "mt-8 mb-4";
+const footerContent = document.createElement("div");
+footerContent.className = "flex items-center justify-between";
+footer.appendChild(footerContent);
+
+const copyright = document.createElement("div");
+copyright.className = "hidden md:flex";
+copyright.innerHTML = '&nbsp;&nbsp;&copy; ' + (new Date().getFullYear()) + ' Tobias Wilhelm';
+footerContent.appendChild(copyright);
+
+const madeWith = document.createElement("div");
+madeWith.className = "hidden md:flex";
+madeWith.innerHTML = 'Imagined by Me - Realized with AI 🧠';
+footerContent.appendChild(madeWith);
+
+const elevatorBtnDiv = document.createElement("div");
+elevatorBtnDiv.innerHTML = 'You need an elevator ride?&nbsp;&nbsp;<i class="fas fa-elevator"></i>&nbsp;&nbsp;';
+elevatorBtnDiv.className = "text-center flex justify-center items-center cursor-pointer mt-4";
+elevatorBtnDiv.onclick = () => {
+  elevator.elevate();
+};
+
+footerContent.appendChild(elevatorBtnDiv);
+document.body.appendChild(footer);
+  </script>
+    <style>
+      @keyframes pulsate {
+        0% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+      }
+      #scroll-down-btn i {
+        animation: pulsate 1.5s linear infinite;
+      }
+    </style>
+    <button id="scroll-down-btn" class="fixed bottom-4 left-1/2 text-black p-2 rounded shadow-md opacity-80 transition-colors duration-200 ease-in-out dark:bg-gray-800 dark:text-white">
+      <i class="fa-solid fa-v"></i>
+    </button>
+    <script>
+      const scrollDownBtn = document.getElementById('scroll-down-btn');
+      const headerContainer = document.getElementById('header-container');
+
+      const toggleScrollButtonVisibility = () => {
+        if (window.pageYOffset === 0) {
+          scrollDownBtn.style.display = 'flex';
+        } else {
+          scrollDownBtn.style.display = 'none';
+        }
+      }
+
+      scrollDownBtn.addEventListener('click', () => {
+        const yOffset = headerContainer.getBoundingClientRect().bottom + window.pageYOffset;
+        window.scrollTo({top: yOffset, behavior: 'smooth'});
+      });
+
+      window.addEventListener('scroll', toggleScrollButtonVisibility);
+      toggleScrollButtonVisibility();
     </script>
 </body>
 </html>
